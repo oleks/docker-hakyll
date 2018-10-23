@@ -30,7 +30,14 @@
 
 FROM haskell:8
 
+ARG username=docker
+
 MAINTAINER Oleks <oleks@oleks.info>
+
+RUN useradd -m -u 1000 ${username}
+WORKDIR /home/${username}/
+
+USER ${username}
 
 RUN cabal update && cabal install hakyll
 
